@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { Zap, GraduationCap, Users, Mic, TrendingUp, BookOpen, Activity } from 'lucide-react';
-import { NavLink as NavLinkType, FeatureCard, PricingPlan, TickerItem, Course, TeamMember, Testimonial, TradingEvent } from './types';
+import { NavLink as NavLinkType, FeatureCard, PricingPlan, TickerItem, Course, TeamMember, Testimonial, TradingEvent, LeaderboardEntry, NewsItem } from './types';
 
 // PROTOCOL 1: SAFE LINK MANDATE
 // All links must be valid internal anchors or routes.
@@ -272,6 +272,22 @@ export const EVENTS: TradingEvent[] = [
   }
 ];
 
+export const LEADERBOARD_DATA: LeaderboardEntry[] = [
+  { id: '1', rank: 1, name: 'CryptoKing_99', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=King', profit: '$142,500', winRate: '92%', badges: ['Sniper', 'Whale'] },
+  { id: '2', rank: 2, name: 'Sarah_Trades', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah', profit: '$98,200', winRate: '88%', badges: ['Consistent'] },
+  { id: '3', rank: 3, name: 'Alex_W', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alex', profit: '$85,400', winRate: '85%', badges: ['Risk Manager'] },
+  { id: '4', rank: 4, name: 'Unknown_Whale', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Anon', profit: '$72,100', winRate: '81%', badges: [] },
+  { id: '5', rank: 5, name: 'FX_Guru', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Guru', profit: '$68,900', winRate: '79%', badges: ['Veteran'] },
+  { id: '6', rank: 6, name: 'Trader_Joe', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Joe', profit: '$54,300', winRate: '75%', badges: [] },
+];
+
+export const NEWS_DATA: NewsItem[] = [
+  { id: '1', title: 'FED Chair Powell Hints at Rate Cuts in Late 2024', summary: 'Markets rally as the Federal Reserve signals a potential pivot in monetary policy during the latest FOMC meeting.', source: 'Bloomberg', timestamp: '10m ago', imageUrl: 'https://images.unsplash.com/photo-1526304640152-d4619684e484?auto=format&fit=crop&q=80&w=1000', type: 'breaking' },
+  { id: '2', title: 'Bitcoin Smashes Resistance at $65k', summary: 'Institutional inflows from ETFs continue to drive the crypto market higher.', source: 'CoinDesk', timestamp: '1h ago', imageUrl: 'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&q=80&w=1000', type: 'market_update' },
+  { id: '3', title: 'Gold Reaches All-Time High Amidst Geopolitical Tension', summary: 'Safe haven assets are seeing record inflows as uncertainty looms over global markets.', source: 'Reuters', timestamp: '3h ago', imageUrl: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&q=80&w=1000', type: 'analysis' },
+  { id: '4', title: 'Tech Sector Earnings Beat Expectations', summary: 'Major tech stocks surge after quarterly earnings reports show strong AI-driven growth.', source: 'CNBC', timestamp: '5h ago', imageUrl: 'https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&q=80&w=1000', type: 'market_update' },
+];
+
 // --- ROUTER SHIM ---
 // Used to replace react-router-dom which is missing in the environment
 
@@ -279,7 +295,7 @@ const RouterContext = createContext<{ pathname: string }>({ pathname: '/' });
 
 export const useLocation = () => useContext(RouterContext);
 
-export const HashRouter = ({ children }: { children: React.ReactNode }) => {
+export const HashRouter = ({ children }: { children?: React.ReactNode }) => {
   const [pathname, setPathname] = useState(window.location.hash.substring(1) || '/');
 
   useEffect(() => {
@@ -298,7 +314,7 @@ export const HashRouter = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const Routes = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+export const Routes = ({ children }: { children?: React.ReactNode }) => <>{children}</>;
 
 export const Route = ({ path, element }: { path: string, element: React.ReactNode }) => {
   const { pathname } = useLocation();
@@ -306,8 +322,14 @@ export const Route = ({ path, element }: { path: string, element: React.ReactNod
   return cleanPath === path ? <>{element}</> : null;
 };
 
-export const Link = ({ to, children, className, onClick }: { to: string, children: React.ReactNode, className?: string, onClick?: any }) => (
+export const Link = ({ to, children, className, onClick }: { to: string, children?: React.ReactNode, className?: string, onClick?: any }) => (
   <a href={`#${to}`} className={className} onClick={onClick}>{children}</a>
 );
 
 export const NavLink = Link;
+
+export const useNavigate = () => {
+  return (path: string) => {
+    window.location.hash = path;
+  };
+};

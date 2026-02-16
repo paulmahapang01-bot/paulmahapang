@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link } from '../constants';
 import { ArrowLeft } from 'lucide-react';
+
+const MotionDiv = motion.div as any;
 
 const AuthLayout: React.FC<{ children: React.ReactNode; title: string }> = ({ children, title }) => {
   return (
@@ -14,7 +16,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode; title: string }> = ({ ch
         {/* Animated Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
 
-        <motion.div 
+        <MotionDiv 
            initial={{ opacity: 0, scale: 0.9, rotateX: 10 }}
            animate={{ opacity: 1, scale: 1, rotateX: 0 }}
            transition={{ duration: 1, ease: "easeOut" }}
@@ -33,7 +35,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode; title: string }> = ({ ch
            <div className="space-y-4">
               {[1, 2, 3].map((i) => (
                  <div key={i} className="h-2 bg-white/10 rounded-full w-full overflow-hidden">
-                    <motion.div 
+                    <MotionDiv 
                        initial={{ width: 0 }}
                        animate={{ width: `${60 + (i * 10)}%` }}
                        transition={{ duration: 1.5, delay: 0.5 + (i * 0.2) }}
@@ -46,7 +48,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode; title: string }> = ({ ch
            <div className="mt-8 pt-8 border-t border-white/10">
               <p className="text-2xl font-grotesk font-bold text-white leading-tight">"The only bad trade is the one you didn't take."</p>
            </div>
-        </motion.div>
+        </MotionDiv>
       </div>
 
       {/* Right Side - Form */}

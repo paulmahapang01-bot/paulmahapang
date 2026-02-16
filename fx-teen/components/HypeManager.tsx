@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Gift, X, AlertTriangle } from 'lucide-react';
 import Button from './Button';
 
+const MotionDiv = motion.div as any;
+const MotionButton = motion.button as any;
+
 // 1. Context to expose control if needed
 type AdMode = 'PASSIVE' | 'CODE_RED';
 
@@ -70,7 +73,7 @@ const PassiveElements = () => {
    return (
       <>
          {/* Top Ticker - Level 4 equivalent for passive */}
-         <motion.div 
+         <MotionDiv 
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -82,10 +85,10 @@ const PassiveElements = () => {
                   BREAKING: CPI DATA RELEASED - MARKET VOLATILITY EXPECTED // NEW ACADEMY MODULE: "THE SNIPER ENTRY" DROPS FRIDAY // 
                </span>
             </div>
-         </motion.div>
+         </MotionDiv>
 
          {/* Floating Gift - Level 4 - MOVED TO BOTTOM-24 to make room for ChatBot */}
-         <motion.div 
+         <MotionDiv 
             className="fixed bottom-24 right-6 z-50"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -93,7 +96,7 @@ const PassiveElements = () => {
          >
             <AnimatePresence>
                {giftOpen && (
-                  <motion.div 
+                  <MotionDiv 
                      initial={{ opacity: 0, y: 10, scale: 0.9 }}
                      animate={{ opacity: 1, y: 0, scale: 1 }}
                      exit={{ opacity: 0, y: 10, scale: 0.9 }}
@@ -104,7 +107,7 @@ const PassiveElements = () => {
                      <p className="text-xs text-silver mb-4">"The 3-Candle Reversal Strategy" sent to your inbox.</p>
                      <input type="email" placeholder="Email Address" className="w-full bg-navy-900 border border-white/10 rounded px-3 py-2 text-xs text-white mb-2" />
                      <Button fullWidth className="py-2 text-xs">Unlock Now</Button>
-                  </motion.div>
+                  </MotionDiv>
                )}
             </AnimatePresence>
             
@@ -114,7 +117,7 @@ const PassiveElements = () => {
             >
                {giftOpen ? <X size={20} /> : <Gift size={20} />}
             </button>
-         </motion.div>
+         </MotionDiv>
       </>
    );
 };
@@ -128,25 +131,25 @@ const CodeRedOverlay = () => {
              CRITICAL: pointer-events-none ensures clicks pass through to content if not blocked by higher layers.
              z-50 ensures it's above content but BELOW navigation (z-9999).
          */}
-         <motion.div 
+         <MotionDiv 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 pointer-events-none mix-blend-overlay overflow-hidden"
          >
             {/* Rotating Warning Light Effect */}
-            <motion.div 
+            <MotionDiv 
                animate={{ rotate: 360 }}
                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                className="w-[200vw] h-[200vw] absolute top-[-50vw] left-[-50vw] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(255,0,0,0)_0deg,rgba(255,0,0,0.15)_60deg,rgba(255,0,0,0)_90deg)] opacity-50"
             />
-         </motion.div>
+         </MotionDiv>
 
          {/* Level 4: Interactive Popups (Sticky Bar) 
              z-51 ensures it's above the red background.
              pointer-events-auto ensures buttons inside are clickable.
          */}
-         <motion.div 
+         <MotionDiv 
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             exit={{ y: 100 }}
@@ -169,7 +172,7 @@ const CodeRedOverlay = () => {
                   </Button>
                </div>
             </div>
-         </motion.div>
+         </MotionDiv>
       </>
    );
 };

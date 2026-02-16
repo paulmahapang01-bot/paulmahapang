@@ -6,6 +6,8 @@ interface ButtonProps extends HTMLMotionProps<"button"> {
   fullWidth?: boolean;
 }
 
+const MotionButton = motion.button as any;
+
 const Button: React.FC<ButtonProps> = ({ 
   children, 
   variant = 'primary', 
@@ -22,13 +24,13 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <motion.button
+    <MotionButton
       whileTap={{ scale: 0.95 }}
       className={`${baseStyles} ${variants[variant]} ${fullWidth ? 'w-full' : ''} ${className}`}
       {...props}
     >
       {children}
-    </motion.button>
+    </MotionButton>
   );
 };
 

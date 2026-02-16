@@ -82,3 +82,24 @@ export interface TradingEvent {
   tags: string[];
   status: 'LIVE' | 'UPCOMING' | 'EXPIRED';
 }
+
+export interface LeaderboardEntry {
+  id: string;
+  rank: number;
+  name: string;
+  avatar: string;
+  profit: string;
+  winRate: string;
+  badges: string[];
+}
+
+export interface NewsItem {
+  id: string;
+  title: string;
+  summary: string;
+  source: string;
+  timestamp: string;
+  imageUrl: string;
+  videoUrl?: string;
+  type: 'breaking' | 'market_update' | 'analysis';
+}

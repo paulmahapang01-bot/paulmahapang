@@ -4,6 +4,8 @@ import { EVENTS } from '../constants';
 import { Radio, Calendar, PlayCircle } from 'lucide-react';
 import Button from './Button';
 
+const MotionDiv = motion.div as any;
+
 const EventsRail = () => {
   return (
     <section className="py-12 border-b border-white/5 bg-navy-900 relative overflow-hidden">
@@ -39,7 +41,7 @@ const EventCard = ({ event }: { event: any }) => {
    const isExpired = event.status === 'EXPIRED';
 
    return (
-      <motion.div 
+      <MotionDiv 
          whileHover={!isExpired ? { y: -5 } : {}}
          className={`
             relative w-[350px] md:w-[400px] bg-navy-800 rounded-xl overflow-hidden flex flex-col
@@ -103,7 +105,7 @@ const EventCard = ({ event }: { event: any }) => {
              ))}
          </div>
          <div className="absolute top-0 bottom-0 left-0 border-l-2 border-dashed border-white/10 pointer-events-none" />
-      </motion.div>
+      </MotionDiv>
    );
 };
 

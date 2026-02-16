@@ -4,6 +4,8 @@ import Layout from '../components/Layout';
 import { TEAM_MEMBERS } from '../constants';
 import { Twitter, Instagram, Zap, BookOpen, Users, Mic } from 'lucide-react';
 
+const MotionDiv = motion.div as any;
+
 const About = () => {
   return (
     <Layout>
@@ -11,14 +13,14 @@ const About = () => {
         
         {/* SECTION 1: ECOSYSTEM MAP */}
         <section className="relative py-20 lg:py-32 px-6 container mx-auto text-center">
-           <motion.div
+           <MotionDiv
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="mb-16 relative z-10"
            >
               <h1 className="text-4xl md:text-6xl font-grotesk font-bold text-white mb-4">THE FX TEEN <span className="text-neon-blue">ECOSYSTEM</span></h1>
               <p className="text-silver text-lg max-w-2xl mx-auto">More than just signals. It's a complete operating system for your financial freedom.</p>
-           </motion.div>
+           </MotionDiv>
 
            {/* Interactive Network Map Visualization */}
            <div className="relative h-[600px] w-full max-w-5xl mx-auto mb-20 perspective-1000">
@@ -43,7 +45,7 @@ const About = () => {
 
               {/* Central Node */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                <motion.div
+                <MotionDiv
                     animate={{ scale: [1, 1.05, 1], boxShadow: ['0 0 30px rgba(0,255,163,0.3)', '0 0 60px rgba(0,255,163,0.6)', '0 0 30px rgba(0,255,163,0.3)'] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     className="w-40 h-40 md:w-48 md:h-48 bg-navy-900 border-2 border-neon-green rounded-full flex flex-col items-center justify-center relative group cursor-pointer hover:bg-navy-800 transition-colors z-30"
@@ -53,7 +55,7 @@ const About = () => {
                      
                      <div className="text-neon-green font-grotesk font-bold text-2xl md:text-3xl relative z-10">YOU</div>
                      <div className="text-xs text-silver mt-2 font-mono bg-white/5 px-2 py-1 rounded relative z-10">Student Success</div>
-                </motion.div>
+                </MotionDiv>
               </div>
 
               {/* Orbiting Nodes */}
@@ -161,7 +163,7 @@ const About = () => {
 };
 
 const SatelliteNode = ({ label, description, x, y, icon: Icon, color, delay }: any) => (
-   <motion.div 
+   <MotionDiv 
       className={`absolute w-32 h-32 md:w-40 md:h-40 bg-navy-900/80 backdrop-blur-md rounded-2xl border flex flex-col items-center justify-center z-20 group cursor-pointer ${color}`}
       style={{ left: x, top: y, transform: 'translate(-50%, -50%)' }}
       animate={{ y: [0, -15, 0] }}
@@ -176,7 +178,7 @@ const SatelliteNode = ({ label, description, x, y, icon: Icon, color, delay }: a
       
       {/* Glow Effect on Hover */}
       <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 bg-current`} />
-   </motion.div>
+   </MotionDiv>
 );
 
 const ConnectionLine = ({ x1, y1, x2, y2, color }: { x1: string, y1: string, x2: string, y2: string, color: string }) => (

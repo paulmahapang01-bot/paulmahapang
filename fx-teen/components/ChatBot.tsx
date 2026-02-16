@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Send, X, Bot, Sparkles, ChevronDown } from 'lucide-react';
 import { GoogleGenAI, Chat } from "@google/genai";
 
+const MotionDiv = motion.div as any;
+const MotionButton = motion.button as any;
+
 interface Message {
   id: string;
   role: 'user' | 'model';
@@ -103,7 +106,7 @@ const ChatBot = () => {
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end pointer-events-none">
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -178,18 +181,18 @@ const ChatBot = () => {
                 <Send size={18} />
               </button>
             </form>
-          </motion.div>
+          </MotionDiv>
         )}
       </AnimatePresence>
 
-      <motion.button
+      <MotionButton
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
         className="pointer-events-auto w-14 h-14 rounded-full bg-neon-green text-navy-900 flex items-center justify-center shadow-[0_0_20px_rgba(0,255,163,0.4)] hover:shadow-[0_0_30px_rgba(0,255,163,0.6)] transition-all z-[100]"
       >
         {isOpen ? <X size={24} /> : <MessageSquare size={24} fill="currentColor" />}
-      </motion.button>
+      </MotionButton>
     </div>
   );
 };

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from '../constants';
 import Button from '../components/Button';
 import PaymentGateway from '../components/PaymentGateway';
 import { ArrowLeft, CheckCircle, ChevronRight, Terminal, Trophy, Users, Zap, Star } from 'lucide-react';
 import { PRICING_PLANS } from '../constants';
+
+const MotionDiv = motion.div as any;
 
 const Register = () => {
   const [step, setStep] = useState(1);
@@ -63,19 +65,19 @@ const Register = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-navy-800 via-navy-900 to-[#000000]"></div>
         
         {/* Floating Background Elements */}
-        <motion.div 
+        <MotionDiv 
           animate={{ rotate: 360 }}
           transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
           className="absolute w-[800px] h-[800px] border border-white/5 rounded-full border-dashed opacity-20"
         />
-        <motion.div 
+        <MotionDiv 
            animate={{ rotate: -360 }}
            transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
            className="absolute w-[600px] h-[600px] border border-neon-green/10 rounded-full opacity-30"
         />
 
         {/* 3D Phone Container */}
-        <motion.div
+        <MotionDiv
           initial={{ y: 20, rotateY: -15, rotateX: 10 }}
           animate={{ y: -20, rotateY: -5, rotateX: 5 }}
           transition={{ repeat: Infinity, repeatType: "mirror", duration: 6, ease: "easeInOut" }}
@@ -95,7 +97,7 @@ const Register = () => {
             </div>
 
             {/* Notification Pop */}
-            <motion.div 
+            <MotionDiv 
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
@@ -104,7 +106,7 @@ const Register = () => {
               <div className="text-neon-green mb-1 flex justify-center"><CheckCircle size={32} /></div>
               <div className="text-white font-bold text-lg">PROFIT HIT</div>
               <div className="text-2xl font-mono text-neon-green">+$450.00</div>
-            </motion.div>
+            </MotionDiv>
 
             {/* Chart Graphic Placeholder */}
             <div className="mt-auto h-32 w-full bg-gradient-to-t from-neon-green/10 to-transparent rounded-t-xl relative overflow-hidden">
@@ -114,10 +116,10 @@ const Register = () => {
                </svg>
             </div>
           </div>
-        </motion.div>
+        </MotionDiv>
 
         {/* Floating Widgets */}
-        <motion.div 
+        <MotionDiv 
           animate={{ y: [0, -15, 0] }}
           transition={{ duration: 4, repeat: Infinity, delay: 1 }}
           className="absolute right-20 top-1/4 bg-navy-800/80 backdrop-blur border border-white/10 p-4 rounded-xl shadow-lg"
@@ -129,9 +131,9 @@ const Register = () => {
                <div className="text-sm font-bold text-white">87.4%</div>
              </div>
           </div>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div 
+        <MotionDiv 
           animate={{ y: [0, 20, 0] }}
           transition={{ duration: 5, repeat: Infinity, delay: 0.5 }}
           className="absolute left-20 bottom-1/3 bg-navy-800/80 backdrop-blur border border-white/10 p-4 rounded-xl shadow-lg"
@@ -143,7 +145,7 @@ const Register = () => {
                <div className="text-sm font-bold text-white">5,241</div>
              </div>
           </div>
-        </motion.div>
+        </MotionDiv>
       </div>
 
       {/* RIGHT COLUMN: THE FORM */}
@@ -164,7 +166,7 @@ const Register = () => {
           {/* Progress Bar */}
           <div className="mb-10">
             <div className="h-1 bg-navy-800 rounded-full overflow-hidden">
-               <motion.div 
+               <MotionDiv 
                  initial={{ width: 0 }}
                  animate={{ width: `${progress}%` }}
                  className="h-full bg-neon-green shadow-[0_0_10px_#00FFA3]"
@@ -178,7 +180,7 @@ const Register = () => {
               
               {/* STEP 1: IDENTITY */}
               {step === 1 && (
-                <motion.div
+                <MotionDiv
                   key="step1"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -211,12 +213,12 @@ const Register = () => {
                        ))}
                     </div>
                   </div>
-                </motion.div>
+                </MotionDiv>
               )}
 
               {/* STEP 2: OBJECTIVES */}
               {step === 2 && (
-                <motion.div
+                <MotionDiv
                   key="step2"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -241,12 +243,12 @@ const Register = () => {
                       </button>
                     ))}
                   </div>
-                </motion.div>
+                </MotionDiv>
               )}
 
               {/* STEP 3: PLAN SELECTION */}
               {step === 3 && (
-                <motion.div
+                <MotionDiv
                   key="step3"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -282,7 +284,7 @@ const Register = () => {
                       </button>
                     ))}
                   </div>
-                </motion.div>
+                </MotionDiv>
               )}
 
               {/* STEP 4: PAYMENT (VIP ONLY) */}
@@ -297,18 +299,18 @@ const Register = () => {
 
               {/* STEP 5: SUCCESS */}
               {step === 5 && (
-                <motion.div
+                <MotionDiv
                   key="step5"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="space-y-6 text-center py-8"
                 >
-                   <motion.div 
+                   <MotionDiv 
                      initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 200, damping: 15 }}
                      className="w-24 h-24 bg-neon-green/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-neon-green/30 shadow-[0_0_30px_rgba(0,255,163,0.2)]"
                    >
                       <Trophy size={48} className="text-neon-green" />
-                   </motion.div>
+                   </MotionDiv>
                    <h3 className="text-2xl font-bold text-white">Access Granted.</h3>
                    <p className="text-silver">Your terminal is configured and ready for deployment.</p>
                    
@@ -321,7 +323,7 @@ const Register = () => {
                    <Button onClick={handleLaunch} fullWidth className="mt-8 shadow-neon animate-pulse">
                       LAUNCH DASHBOARD
                    </Button>
-                </motion.div>
+                </MotionDiv>
               )}
             </AnimatePresence>
 

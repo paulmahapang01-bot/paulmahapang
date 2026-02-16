@@ -4,6 +4,8 @@ import Button from '../components/Button';
 import { Mail, MessageCircle, MapPin, Phone, Instagram, Send, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const MotionDiv = motion.div as any;
+
 const Contact = () => {
   return (
     <Layout>
@@ -90,7 +92,7 @@ const Contact = () => {
 
 // Sub-component for Leadership Cards
 const LeadershipCard = ({ name, role, badge, socials }: any) => (
-   <motion.div 
+   <MotionDiv 
       whileHover={{ y: -5 }}
       className="bg-navy-800/50 backdrop-blur-md p-8 rounded-3xl border border-neon-green/30 relative overflow-hidden group hover:border-neon-green transition-all duration-300 shadow-lg"
    >
@@ -140,7 +142,7 @@ const LeadershipCard = ({ name, role, badge, socials }: any) => (
             ))}
          </div>
       </div>
-   </motion.div>
+   </MotionDiv>
 );
 
 export default Contact;

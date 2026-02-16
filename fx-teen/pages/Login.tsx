@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import AuthLayout from './AuthLayout';
 import Button from '../components/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from '../constants';
 import { AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+const MotionDiv = motion.div as any;
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -32,14 +34,14 @@ const Login = () => {
     <AuthLayout title="Log In">
       <form className="space-y-6" onSubmit={handleLogin}>
         {error && (
-          <motion.div 
+          <MotionDiv 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="bg-red-500/10 border border-red-500 text-red-500 p-3 rounded-lg flex items-center gap-2 text-sm"
           >
             <AlertTriangle size={16} />
             {error}
-          </motion.div>
+          </MotionDiv>
         )}
 
         <div className="space-y-2">

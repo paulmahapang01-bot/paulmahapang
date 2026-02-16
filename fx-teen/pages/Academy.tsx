@@ -4,6 +4,8 @@ import { COURSES } from '../constants';
 import { PlayCircle, Clock, BarChart } from 'lucide-react';
 import Layout from '../components/Layout';
 
+const MotionDiv = motion.div as any;
+
 const Academy = () => {
   return (
     <Layout>
@@ -17,7 +19,7 @@ const Academy = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {COURSES.map((course, index) => (
-            <motion.div
+            <MotionDiv
               key={course.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -51,7 +53,7 @@ const Academy = () => {
                     <div className="w-0 h-full bg-neon-green group-hover:w-full transition-all duration-700 ease-out" />
                  </div>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
       </div>

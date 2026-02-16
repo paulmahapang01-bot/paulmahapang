@@ -2,13 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { TICKER_DATA } from '../constants';
 
+const MotionDiv = motion.div as any;
+
 const Ticker = () => {
   return (
     <div className="w-full bg-[#05070A] py-3 border-y border-white/5 overflow-hidden flex relative z-10">
       <div className="absolute top-0 bottom-0 left-0 w-20 bg-gradient-to-r from-[#05070A] to-transparent z-10" />
       <div className="absolute top-0 bottom-0 right-0 w-20 bg-gradient-to-l from-[#05070A] to-transparent z-10" />
       
-      <motion.div 
+      <MotionDiv 
         className="flex whitespace-nowrap"
         animate={{ x: [0, -1000] }}
         transition={{
@@ -30,7 +32,7 @@ const Ticker = () => {
             ))}
           </div>
         ))}
-      </motion.div>
+      </MotionDiv>
     </div>
   );
 };

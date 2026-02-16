@@ -4,6 +4,8 @@ import Layout from '../components/Layout';
 import { TESTIMONIALS } from '../constants';
 import { Twitter, MessageSquare } from 'lucide-react';
 
+const MotionDiv = motion.div as any;
+
 const Testimonials = () => {
   // Duplicate testimonials to create enough content for infinite scroll
   const items = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
@@ -44,7 +46,7 @@ const Testimonials = () => {
 
 const InfiniteColumn = ({ items, speed, className = "" }: { items: any[], speed: number, className?: string }) => (
    <div className={`flex-col gap-6 ${className}`}>
-      <motion.div
+      <MotionDiv
          animate={{ y: [0, -1000] }}
          transition={{ repeat: Infinity, ease: "linear", duration: speed }}
          className="flex flex-col gap-6 pb-6"
@@ -52,11 +54,11 @@ const InfiniteColumn = ({ items, speed, className = "" }: { items: any[], speed:
          {items.map((item, idx) => (
             <TestimonialCard key={`${item.id}-${idx}`} item={item} />
          ))}
-      </motion.div>
+      </MotionDiv>
    </div>
 );
 
-const TestimonialCard = ({ item }: { item: any }) => (
+const TestimonialCard: React.FC<{ item: any }> = ({ item }) => (
    <div className="bg-[#111625]/90 backdrop-blur-md border border-white/5 p-6 rounded-2xl break-inside-avoid hover:border-neon-green/50 transition-colors duration-300 group">
       <div className="flex items-center justify-between mb-4">
          <div className="flex items-center gap-3">
